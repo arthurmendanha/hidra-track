@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>HidraTrack - Controle de Hidratação</title>
+    <link rel="stylesheet" href="design.css">
+</head>
+<body>
+
+    <div class="cabecalho-principal">
+        <h1>HidraTrack – Controle de Hidratação</h1>
+    </div>
+
+    <div class="cabecalho-menu">
+        <h2>Menu</h2>
+    </div>
+
+    <div class="container-menu">
+        <div class="linha-menu">
+            <span class="rotulo">Definir meta:</span>
+            <div class="controles">
+                <input type="number" id="input-meta" value="2500">
+                <button class="btn-engrenagem" onclick="salvarMeta()">⚙</button>
+            </div>
+        </div>
+
+        <div class="linha-menu">
+            <span class="rotulo">Registrar consumo (ml):</span>
+            <div class="controles">
+                <input type="number" id="input-consumo" value="250">
+                <button onclick="adicionarAgua()">+</button>
+                <button onclick="removerAgua()">-</button>
+            </div>
+        </div>
+
+        <div class="area-progresso">
+            <div class="progresso-agua">
+                <span id="valor-consumido">0</span>
+            </div>
+            <div class="progresso-falta">
+                <span id="valor-faltando">2500</span>
+            </div>
+        </div>
+
+        <div class="linha-menu">
+            <span class="rotulo">Histórico consumo:</span>
+            <div class="controles">
+                <button onclick="abrirHistorico()">Abrir</button>
+            </div>
+        </div>
+
+        <div class="linha-menu">
+            <span class="rotulo">Lembrete:</span>
+            <div class="controles">
+                <span id="texto-lembrete">60 em 60</span>
+                <input type="number" id="input-lembrete" value="60" min="1" style="width: 70px;">
+                <button class="btn-engrenagem" onclick="mudarLembrete()">⚙</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-historico" class="modal">
+        <div class="modal-conteudo modal-historico-conteudo">
+            <h3>Histórico de Consumo</h3>
+            <div id="lista-historico" class="lista-historico"></div>
+            <br>
+            <button onclick="fecharHistorico()">Fechar</button>
+        </div>
+    </div>
+
+    <div id="modal-popup" class="modal">
+        <div class="modal-conteudo" style="text-align: center; width: 300px;">
+            <h3>Hora de se hidratar! 💧</h3>
+            <p>O tempo configurado passou. Beba água!</p>
+            <button onclick="fecharPopup()">OK</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+HIDRATRACK - COMO BAIXAR E EXECUTAR
+===================================
+
+Este guia explica como executar o HidraTrack no seu próprio computador.
+O projeto usa PHP para acessar o banco SQLite. Por isso, não basta abrir o
+arquivo index.html com dois cliques: inicie o servidor PHP seguindo os passos
+do sistema operacional abaixo.
+
+
+1. BAIXE O PROJETO
+------------------
+
+Baixe ou clone os arquivos do projeto do GitHub e extraia a pasta, se necessário.
+No computador, abra a pasta "hidra-track". Ela deve conter arquivos como
+index.html, api.php, script.js e design.css.
+
+O caminho da pasta será diferente em cada computador. Os comandos deste guia
+usam um exemplo; troque-o pelo local onde você salvou o projeto.
+
+
+2. WINDOWS: INSTALAR O PHP PELO XAMPP
+-------------------------------------
+
+1. Acesse o site oficial:
+   https://www.apachefriends.org/download.html
+
+2. Baixe o instalador do XAMPP para Windows. Escolha uma versão que inclua PHP.
+   Se aparecerem várias versões do PHP, escolha a mais recente estável oferecida
+   para o seu Windows. Para este projeto, PHP 8.0 ou superior é adequado.
+   Em computadores Windows comuns, escolha a opção 64-bit (x64). Não baixe
+   versões para Linux ou macOS no Windows.
+
+3. Instale o XAMPP. O caminho padrão usado neste exemplo é:
+   C:\xampp
+
+   Se você escolher outra pasta durante a instalação, ajuste o caminho do
+   php.exe nos comandos abaixo.
+
+4. Abra o PowerShell. Vá para a pasta do projeto. Por exemplo, se ela estiver
+   dentro da pasta Downloads:
+
+   cd "$env:USERPROFILE\Downloads\hidra-track"
+
+   Se salvou em outro lugar, substitua o caminho acima pelo caminho real da
+   pasta "hidra-track". Dica: no Explorador de Arquivos, abra a pasta,
+   clique na barra de endereço, copie o caminho e use-o depois de cd.
+
+5. Inicie o servidor PHP:
+
+   & "C:\xampp\php\php.exe" -S localhost:8000
+
+   Deixe essa janela do PowerShell aberta enquanto estiver usando o site.
+
+6. Abra o navegador e acesse:
+
+   http://localhost:8000/index.html
+
+Para encerrar o servidor, volte ao PowerShell e pressione Ctrl+C.
+
+
+3. macOS OU LINUX
+-----------------
+
+Não baixe o instalador de Windows. No site do Apache Friends, selecione o
+instalador correspondente ao seu sistema, se estiver disponível para a versão
+do seu computador. Caso prefira usar o PHP do próprio sistema, instale o PHP
+CLI e o suporte PDO_SQLite usando o gerenciador de pacotes recomendado para
+a sua distribuição/versão.
+
+Confira se o PHP está instalado:
+
+   php -v
+
+Confira se os módulos PDO e SQLite estão habilitados:
+
+   php -m
+
+A lista deve incluir PDO e pdo_sqlite (alguns sistemas também mostram sqlite3).
+Se pdo_sqlite não aparecer, instale/habilite o módulo SQLite do PHP para o seu
+sistema antes de continuar.
+
+No terminal, entre na pasta "hidra-track". Por exemplo:
+
+   cd "/caminho/onde/voce/salvou/hidra-track"
+
+Troque o exemplo pelo caminho real da pasta. Inicie o servidor:
+
+   php -S localhost:8000
+
+Deixe o terminal aberto e acesse no navegador:
+
+   http://localhost:8000/index.html
+
+Para encerrar o servidor, volte ao terminal e pressione Ctrl+C.
+
+
+4. BANCO DE DADOS E DADOS DE CADA PESSOA
+----------------------------------------
+
+O PHP cria o arquivo bd.db e a tabela de dias automaticamente quando o site é
+executado pela primeira vez. O primeiro registro diário começa com meta de
+2500 ml e consumo de 0 ml. O botão de consumo vem configurado para 250 ml e o
+lembrete começa em 60 minutos.
+
+O bd.db fica na pasta do projeto e guarda o histórico daquele computador.
+Assim, cada pessoa que executar sua própria cópia terá seu próprio banco e seus
+próprios dados. Não envie seu bd.db para outras pessoas se não quiser compartilhar
+seu histórico. O arquivo está excluído do GitHub pelo .gitignore.
+
+O GitHub Pages não executa PHP. Para usar o site pelo GitHub Pages seria
+necessário trocar/implementar uma solução de hospedagem que execute PHP e tenha
+banco de dados. Este guia é para executar o projeto localmente no computador.
+
+
+5. PROBLEMAS COMUNS
+-------------------
+
+"php não é reconhecido" no Windows:
+Use o caminho completo para php.exe mostrado no passo 2. Se instalou o XAMPP
+em outra pasta, altere o caminho, por exemplo:
+
+   & "D:\xampp\php\php.exe" -S localhost:8000
+
+"Falha ao acessar o banco SQLite":
+Confirme que o módulo pdo_sqlite aparece na saída de php -m (ou php.exe -m no
+Windows) e que a pasta do projeto permite criar/alterar arquivos.
+
+"Address already in use" ou a porta 8000 já está ocupada:
+Inicie o servidor em outra porta, por exemplo:
+
+   php -S localhost:8001
+
+No Windows com XAMPP, use:
+
+   & "C:\xampp\php\php.exe" -S localhost:8001
+
+Depois acesse http://localhost:8001/index.html.

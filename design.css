@@ -1,0 +1,211 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.cabecalho-principal {
+    background-color: rgb(0, 136, 255);
+    padding: 24px max(32px, calc((100% - 1200px) / 2));
+    color: white;
+}
+
+.cabecalho-principal h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.cabecalho-menu {
+    background-color: rgb(0, 255, 221);
+    padding: 14px max(32px, calc((100% - 1200px) / 2));
+}
+
+.cabecalho-menu h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.container-menu {
+    width: min(1200px, calc(100% - 64px));
+    margin: 36px auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.linha-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 54px;
+}
+
+.rotulo {
+    font-size: 20px;
+}
+
+.controles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.controles input {
+    min-width: 130px;
+    min-height: 40px;
+    padding: 6px 10px;
+    font: inherit;
+}
+
+.controles button {
+    min-width: 44px;
+    min-height: 40px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.btn-engrenagem {
+    background: none;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.area-progresso {
+    display: flex;
+    height: 76px;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.progresso-agua {
+    background-image: url("./agua-imagem.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 18px;
+    color: black;
+    font-weight: bold;
+    width: 0%;
+    font-size: 22px;
+}
+
+.progresso-falta {
+    background-color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 18px;
+    color: black;
+    font-weight: bold;
+    width: 100%;
+    font-size: 22px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-conteudo {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 650px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.modal-historico-conteudo {
+    display: flex;
+    flex-direction: column;
+    width: min(650px, calc(100vw - 40px));
+    max-height: min(500px, calc(100vh - 40px));
+    overflow: hidden;
+}
+
+.lista-historico {
+    min-height: 0;
+    max-height: min(360px, 55vh);
+    overflow-y: auto;
+    scrollbar-gutter: stable;
+}
+
+.item-historico {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 16px 8px;
+    font-size: 18px;
+}
+
+.meta-batida {
+    color: #9acd32;
+    font-weight: bold;
+}
+
+.meta-nao-batida {
+    color: #ff4500;
+    font-weight: bold;
+}
+
+@media (max-width: 700px) {
+    .cabecalho-principal {
+        padding: 20px 24px;
+    }
+
+    .cabecalho-principal h1 {
+        font-size: 26px;
+    }
+
+    .cabecalho-menu {
+        padding: 12px 24px;
+    }
+
+    .container-menu {
+        width: calc(100% - 32px);
+        margin: 20px auto;
+        padding: 12px 0;
+        gap: 14px;
+    }
+
+    .linha-menu {
+        gap: 12px;
+    }
+
+    .rotulo {
+        font-size: 17px;
+    }
+
+    .controles {
+        gap: 6px;
+    }
+
+    .controles input {
+        min-width: 80px;
+        width: 100px;
+    }
+
+    .item-historico {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+}

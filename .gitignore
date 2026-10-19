@@ -1,0 +1,4 @@
+bd.db
+bd.db-journal
+bd.db-shm
+bd.db-wal

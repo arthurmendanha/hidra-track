@@ -10,7 +10,13 @@ function responderJson($dados, $status = 200)
 }
 
 try {
-    $caminhoDb = 'sqlite:' . __DIR__ . DIRECTORY_SEPARATOR . 'bd.db';
+    $arquivoBase = __DIR__ . DIRECTORY_SEPARATOR . 'bd.db';
+    $arquivoLocal = __DIR__ . DIRECTORY_SEPARATOR . 'bd-local.db';
+    if (!file_exists($arquivoLocal) && file_exists($arquivoBase) && !copy($arquivoBase, $arquivoLocal)) {
+        responderJson(['erro' => 'Não foi possível criar o banco de dados local. Verifique as permissões da pasta do projeto.'], 500);
+    }
+
+    $caminhoDb = 'sqlite:' . $arquivoLocal;
     $db = new PDO($caminhoDb);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->exec("CREATE TABLE IF NOT EXISTS dias (
@@ -112,5 +118,5 @@ try {
     responderJson(['erro' => 'Ação não encontrada.'], 404);
 } catch (PDOException $e) {
     error_log('Erro na API HidraTrack/SQLite: ' . $e->getMessage());
-    responderJson(['erro' => 'Falha ao acessar o banco SQLite. Verifique se o PHP tem o driver PDO_SQLITE habilitado e se bd.db pode ser gravado.'], 500);
+    responderJson(['erro' => 'Falha ao acessar o banco SQLite. Verifique se o PHP tem o driver PDO_SQLITE habilitado e se a pasta do projeto permite criar ou gravar bd-local.db.'], 500);
 }

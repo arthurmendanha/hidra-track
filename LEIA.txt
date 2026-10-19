@@ -97,15 +97,16 @@ Para encerrar o servidor, volte ao terminal e pressione Ctrl+C.
 4. BANCO DE DADOS E DADOS DE CADA PESSOA
 ----------------------------------------
 
-O PHP cria o arquivo bd.db e a tabela de dias automaticamente quando o site é
-executado pela primeira vez. O primeiro registro diário começa com meta de
-2500 ml e consumo de 0 ml. O botão de consumo vem configurado para 250 ml e o
-lembrete começa em 60 minutos.
+O repositório inclui o arquivo bd.db como uma base SQLite vazia, sem tabelas e
+sem registros. Na primeira execução, o PHP copia essa base para bd-local.db,
+cria a tabela de dias nesse arquivo local e começa o dia com meta de 2500 ml e
+consumo de 0 ml. O botão de consumo vem configurado para 250 ml e o lembrete
+começa em 60 minutos.
 
-O bd.db fica na pasta do projeto e guarda o histórico daquele computador.
-Assim, cada pessoa que executar sua própria cópia terá seu próprio banco e seus
-próprios dados. Não envie seu bd.db para outras pessoas se não quiser compartilhar
-seu histórico. O arquivo está excluído do GitHub pelo .gitignore.
+O arquivo bd-local.db guarda o histórico somente naquele computador e está
+excluído do GitHub pelo .gitignore. Cada pessoa que baixar e executar sua própria
+cópia terá seus próprios dados. O arquivo bd.db enviado ao GitHub permanece como
+base vazia; os dados de uso nunca devem ser gravados nele.
 
 O GitHub Pages não executa PHP. Para usar o site pelo GitHub Pages seria
 necessário trocar/implementar uma solução de hospedagem que execute PHP e tenha

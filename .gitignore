@@ -1,4 +1,4 @@
-bd.db
-bd.db-journal
-bd.db-shm
-bd.db-wal
+bd-local.db
+bd-local.db-journal
+bd-local.db-shm
+bd-local.db-wal
